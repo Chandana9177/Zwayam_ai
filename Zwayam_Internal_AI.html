@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Automation Across Customer Journey Teams</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .slide {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .slide:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .slide-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #8e44ad;
+        }
+
+        .slide-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 10px 20px rgba(142, 68, 173, 0.3);
+        }
+
+        .slide-title {
+            font-size: 2.2em;
+            color: #2d3748;
+            font-weight: 700;
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide-subtitle {
+            font-size: 1.1em;
+            color: #718096;
+            margin-top: 5px;
+        }
+
+        .content-section {
+            margin: 25px 0;
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            color: #2d3748;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 4px solid #8e44ad;
+        }
+
+        .placeholder-content {
+            background: #f7fafc;
+            border: 2px dashed #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            color: #718096;
+            font-style: italic;
+            transition: all 0.3s ease;
+        }
+
+        .placeholder-content:hover {
+            background: #edf2f7;
+            border-color: #8e44ad;
+        }
+
+        .step-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .step-container-three {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .step-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 20px;
+            border-left: 5px solid #8e44ad;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8e44ad, #9b59b6);
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .step-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .step-description {
+            color: #718096;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid #8e44ad;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .team-name {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(142, 68, 173, 0.3);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(142, 68, 173, 0.4);
+        }
+
+        .nav-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #8e44ad, #9b59b6);
+            transition: width 0.5s ease;
+            z-index: 1001;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #2d3748;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #8e44ad20, #9b59b620);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #8e44ad;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #8e44ad;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            color: #718096;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+                margin: 20px 0;
+            }
+            
+            .slide-title {
+                font-size: 1.8em;
+            }
+            
+            .nav-buttons {
+                bottom: 20px;
+            }
+            
+            .step-container {
+                grid-template-columns: 1fr;
+            }
+
+            .step-container-three {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Additional Royal Purple accent elements */
+        .brand-badge {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            display: inline-block;
+            margin: 10px 0;
+            box-shadow: 0 4px 12px rgba(142, 68, 173, 0.3);
+        }
+
+        .feature-highlight {
+            background: linear-gradient(135deg, #f8f4ff, #f0e6ff);
+            border: 1px solid #8e44ad30;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .success-indicator {
+            color: #8e44ad;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="slide-counter" id="slideCounter">1 / 9</div>
+    
+    <div class="presentation-container">
+        <!-- Slide 1: Title Slide -->
+        <div class="slide" id="slide1">
+            <div class="slide-header">
+                <div class="slide-icon">🤖</div>
+                <div>
+                    <h1 class="slide-title">AI Productivity Across Zwayam Teams</h1>
+                    <p class="slide-subtitle">Transforming Presales, Sales, Implementation, Helpdesk & Customer Success</p>
+                </div>
+            </div>
+            <div class="content-section">
+                <div class="brand-badge">Zwayam Ahead: AI-Powered Teams, Future-Ready Results</div>
+                <div class="placeholder-content">
+                    <strong>"At Zwayam, we aim to harness AI across every workflow so our teams spend less time on routine tasks and more time creating value—shortening sales & implementation cycles, elevating customer experience, and keeping us decisively ahead of industry change."</strong><br>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Current State & Challenges -->
+        <div class="slide hidden" id="slide2">
+            <div class="slide-header">
+                <div class="slide-icon">📊</div>
+                <div>
+                    <h1 class="slide-title">Where we stand & what hinders</h1>
+                    <p class="slide-subtitle">Manual-effort hotspots & automation opportunity areas</p>
+                </div>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <h3 class="team-name">Presales Challenges</h3>
+                    <div class="placeholder-content">
+                        • Manual note-taking during demos<br>
+                        • Time consuming consolidation that follows<br>
+                        • Custom collaterals built from scratch<br>
+                        • Repetitive filling of Infosec questionnaires<br>
+                        • Multiple manual iterations of SOW
+                    </div>
+                </div>
+                <div class="team-card">
+                    <h3 class="team-name">Sales Challenges</h3>
+                    <div class="placeholder-content">
+                        • Prospect data scattered in personal excel sheets<br>
+                        • Lead research & nurture emails are all manual, eating hours<br>
+                        • No shared notes,Sales re-explains context to Presales<br>
+                        • Infosec/legal docs ping-pong between teams, delaying deals<br>
+                        • Reps scramble for usage metrics before renewals/QBRs
+                    </div>
+                </div>
+                <div class="team-card">
+                    <h3 class="team-name">Implementation Challenges</h3>
+                    <div class="placeholder-content">
+                        • Lengthy requirement gathering; excel checklists<br>
+                        • Time-consuming debuuging of config errors<br>
+                        • Manual execution of 200+ standard test cases<br>
+                        • No central knowledge base<br>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <h3 class="team-name">Helpdesk Challenges</h3>
+                    <div class="placeholder-content">
+                        • Manual triage & assignment<br>
+                        • Missing ticket context<br>
+                        • Cross-team handoffs stall<br>
+                        • Helpdesk chases other teams for jira updates<br>
+                        • Knowledge base bottleneck
+                    </div>
+                </div>
+                <div class="team-card">
+                    <h3 class="team-name">CS Challenges</h3>
+                    <div class="placeholder-content">
+                        • Manual Jira ticket cycle<br>
+                        • Config bug testing done by hand<br>
+                        • Client call notes & MOMs typed manually<br>
+                        • Governance decks/other reports built by hand<br>
+                        • Dependency on other teams for SQL query writing
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Smart Presales pipeline -->
+        <div class="slide hidden" id="slide3">
+            <div class="slide-header">
+                <div class="slide-icon">🎯</div>
+                <div>
+                    <h1 class="slide-title">Smart Presales pipeline</h1>
+                    <p class="slide-subtitle">Turning manual steps into self-service workflows</p>
+                </div>
+            </div>
+            <div class="step-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Context in, fast</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • Sales sends a ChatGPT/Claude one-pager (company snapshot, pain clues, hooks)<br>
+                            • Lead auto-logged and assigned in sharepoint sheet
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Demo with live capture</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • Otter.ai/teams copilot records+transcribes call<br>
+                            • Instant "smart summary" and next steps posted to deal record<br>
+                            • Generated transcript to be fed into ChatGPT to instantly return sentiment snapshot/buying signals/unanswered client queries/next step action list/recap email
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Rapid follow-up</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • ChatGPT retrieval bot surfaces KB answers for client queries (reps doesnt have to sync with implementation/product teams)<br>
+                            • AI slide helper pulls response slides/ competitor grids into follow-up email
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Compliance & contract wrap-up</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • Claude/ChatGPT prefills Infosec questionnaire from templates<br>
+                            • Same model drafts SOW, iterates as required
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: AI-Powered Sales Engine -->
+        <div class="slide hidden" id="slide4">
+            <div class="slide-header">
+                <div class="slide-icon">💼</div>
+                <div>
+                    <h1 class="slide-title">AI-Powered Sales Engine</h1>
+                    <p class="slide-subtitle">Accelerating Deal Closure & Pipeline Management</p>
+                </div>
+            </div>
+            <div class="step-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Unified prospect tracker + AI outreach</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • Sharepoint sheet holds all prospects; Power Automate pulls firmographics from LinkedIn Sales Navigator/Lusha<br>
+                            • ChatGPT drafts personalised intro+drip emails; sent via Outlook<br>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Central battle-card & solution vault</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • OneDrive folder stores competitor grids and past solution docs<br>
+                            • LLM powered search bar fetches the right slide or answers on demand<br>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Instant hand-off brief for presales</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • Teams copilot transcribes discovery calls<br>
+                            • LLM turns the transcript into a one-page brief posted in teams channel<br>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Simplified Infosec and Renewal decks</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • LLM auto-fills standard Infosec questionnaires<br>
+                            • Usage metrics are generated into ready-made decks every quarter<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Implementation AI Automation -->
+        <div class="slide hidden" id="slide5">
+            <div class="slide-header">
+                <div class="slide-icon">⚙️</div>
+                <div>
+                    <h1 class="slide-title">AI-led implementation process optimisation</h1>
+                    <p class="slide-subtitle">AI-driven implementation efficiency</p>
+                </div>
+            </div>
+            <div class="step-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Super-charged note-taking (before we build a full AI wizard)</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • Record & auto-summarise every requirements call (Teams 'Intelligent Recap')<br>
+                            • Prompt the LLM to convert call summary into requirements table<br>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Auto-testing for Internal UAT</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • LLM reads the final spec and spins up the 200+ standard test cases<br>
+                            • Runs them in playwright/selenium and sends a pass/fail report<br>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Config-debug assistant</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • LLM + rule script ingests error logs and pinpoints the most likely mis-configs<br>
+                            • Suggests the exact field or toggle to fix, cutting debug hours to minutes<br>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Build a living, AI-indexed knowledge hub</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • Closed tickets, confluence pages part of knowledge hub<br>
+                            • Spocs can resolve doubts on the spot by querying the LLM, which pulls answers directly from the shared KB<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Helpdesk AI Automation -->
+        <div class="slide hidden" id="slide6">
+            <div class="slide-header">
+                <div class="slide-icon">🎧</div>
+                <div>
+                    <h1 class="slide-title">Helpdesk AI Automation</h1>
+                    <p class="slide-subtitle">Intelligent Support & Issue Resolution</p>
+                </div>
+            </div>
+            <div class="step-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Smart triage & assignment</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • A webhook sends each new Freshdesk ticket to ChatGPT/Claude<br>
+                            • The model returns a label (L1, dataupdate, bug)<br>
+                            • Freshdesk Automator (or Zapier) sets teh ticket group field based on the label<br>
+                            • Alternatively we can try Freddy AI or Dispatch'r which are freshdesk built-in tools<br>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-title">AI reply assistant</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • ChatGPT/Claude suggests first-response drafts for L1 issues<br>
+                            • Freshdesk macros insert the draft; helpdesk spoc tweaks if required and sends<br>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Automated Jira creation</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • Freshdesk-jira connector autogenerates a jira ticket for tagged bugs, CRs<br>
+                            • Jira ticket status is kept as a 2-way sync<br>
+                            • No more chasing of teams for status updates<br>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Knowledge-base automation</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • ChatGPT/Claude auto-sends the L1 reply and inserts the best matching KB link<br>
+                            • If no suitable article exists, LLM also drafts a short "how-to" piece and drops it into the KB queue for review<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Customer Success AI Automation -->
+        <div class="slide hidden" id="slide7">
+            <div class="slide-header">
+                <div class="slide-icon">🌟</div>
+                <div>
+                    <h1 class="slide-title">AI-powered Customer Success</h1>
+                    <p class="slide-subtitle">Proactive Relationship Management & Growth</p>
+                </div>
+            </div>
+            <div class="step-container-three">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Hands-free Jira/Helpdesk sync</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • Ticket hits Freshdesk with the "escalate_to_jira" tag<br>
+                            • Connector auto-creates a mapped JIRA issue in the right project<br>
+                            • JIRA key is written back to the original Freshdesk ticket<br>
+                            • Status and comments stay in two-way sync until both close<br>
+                            • CS spoc is only added as a watcher (FYI)
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-title">AI notes for client calls</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • Otter.ai/Teams intelligent recap transcribes the call<br>
+                            • LLM summerises sentiment, open issues, next steps<br>
+                            • MOM/follow-up email auto drafted
+                        </div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-title">One-click governance decks</div>
+                    <div class="step-description">
+                        <div class="placeholder-content">
+                            • CS Spoc runs a self-service query template<br>
+                            • GPT script converts the query feed into slides+commentary<br>
+                            • Governance/Renewal decks auto-land in spoc's folder
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Implementation Roadmap -->
+        <div class="slide hidden" id="slide8">
+            <div class="slide-header">
+                <div class="slide-icon">🗺️</div>
+                <div>
+                    <h1 class="slide-title">Quarter long-Implementation Roadmap</h1>
+                    <p class="slide-subtitle">Step-by-Step Automation Journey</p>
+                </div>
+            </div>
+            <div class="content-section">
+                <h3 class="section-title">Phase 1: Prep & transitions (July)</h3>
+                <div class="feature-highlight">
+                    <div class="placeholder-content">
+                        • Collect 2-3 months of real work (tickets, decks..) for each team<br>
+                        • Define 3-5 labels or templates per workflow (eg ticket types, meeting note format..)<br>
+                        • Fine-tune/prompt-tune the chosen LLM on this sample data<br>
+                    </div>
+                </div>
+            </div>
+            <div class="content-section">
+                <h3 class="section-title">Phase 2: Pilot Automations (August)</h3>
+                <div class="feature-highlight">
+                    <div class="placeholder-content">
+                        • Pilot use cases across all teams (auto-triage, auto-notes, auto-deck)<br>
+                        • Keep humans in the loop for edits; track accuracy and time saved<br>
+                        • Fix edge cases and adjust prompts weekly<br>
+                    </div>
+                </div>
+            </div>
+            <div class="content-section">
+                <h3 class="section-title">Phase 3: Scale & Optimise (September)</h3>
+                <div class="feature-highlight">
+                    <div class="placeholder-content">
+                        • Expand successful pilots to all teams and workflows<br>
+                        • Comprehensive KB for LLM to query & retrieve wherever required<br>
+                        • Monthly prompt-tuning/model refresh cycle<br>
+                        • Central AI dashboard to track usage, accuracy and cost<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Bonus - How This Deck Was Made -->
+        <div class="slide hidden" id="slide9">
+            <div class="slide-header">
+                <div class="slide-icon">💡</div>
+                <div>
+                    <h1 class="slide-title">Bonus: How This Deck Was Made</h1>
+                    <p class="slide-subtitle">Tools Used, Efficiency Tips & What's Next</p>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <h3 class="section-title">🤖 AI Models as Strategic Collaborators</h3>
+                <div class="step-container">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-title">ChatGPT O3</div>
+                        <div class="step-description">
+                            <strong>Reasoning-first model:</strong> Used for brainstorming. Good for planning & decision making support
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Claude Sonnet 4</div>
+                        <div class="step-description">
+                            Used to generate this current artefact!
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-title">GPT-4o</div>
+                        <div class="step-description">
+                            Assisted in refining content tone, naming sections, and formatting for clarity and flow
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Copilot (MS Teams)</div>
+                        <div class="step-description">
+                            Leveraged to extract team workflows from internal calls and feed into ChatGPT for refinement
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3 class="section-title">🛠 Efficiency Tips for Teams</h3>
+                <div class="feature-highlight">
+                    <div class="placeholder-content">
+                        • Use <strong>transcripts and meeting summaries</strong> as input to AI for auto-drafting mails/action items<br><br>
+                        • <strong>Switch between models based on task type:</strong> e.g., Claude Sonnet for query optimization, GPT-4o for formatting/content polishing, O3 for structured thinking/reasoning<br><br>
+                        • Create <strong>reusable AI prompts/templates</strong> for recurring tasks. The models are natively not capable of giving critical feedback. If you give an idea, by-default it assumes it is a good idea. If you want critical feedback you are supposed to ask. Keep in mind that AI models tend to be slightly sycophantic on the first pass—they often assume the original structure or approach is correct and only make minor tweaks when asked to "improve" something. To get true value, you need to explicitly prompt them to challenge the structure itself. For example: “Now ignore how I’ve framed this and use your own judgment to redesign or restructure it as you see fit.” This encourages the model to think independently rather than just polish the surface.
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h3 class="section-title">🚀 What to expect soon</h3>
+                <div class="highlight-box">
+                    <div class="placeholder-content">
+                        • With GPT-5 expected to unify reasoning + general tasks, model switching in ChatGPT may no longer be required<br><br>
+                        • AI browsers (eg Comet-Perplexity) are in beta. Once GA versions are in place we can have more agent use cases for zwayam<br><br>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-buttons">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 9;
+
+        function showSlide(slideNumber) {
+            // Hide all slides
+            for (let i = 1; i <= totalSlides; i++) {
+                document.getElementById(`slide${i}`).classList.add('hidden');
+            }
+            
+            // Show current slide
+            document.getElementById(`slide${slideNumber}`).classList.remove('hidden');
+            
+            // Update counter
+            document.getElementById('slideCounter').textContent = `${slideNumber} / ${totalSlides}`;
+            
+            // Update progress bar
+            const progress = (slideNumber / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            
+            // Update button states
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = slideNumber === 1;
+            nextBtn.disabled = slideNumber === totalSlides;
+        }
+
+        function changeSlide(direction) {
+            const newSlide = currentSlide + direction;
+            if (newSlide >= 1 && newSlide <= totalSlides) {
+                currentSlide = newSlide;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (event.key === 'ArrowRight') {
+                changeSlide(1);
+            }
+        });
+
+        // Auto-play functionality (optional)
+        let autoPlayInterval;
+        
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(() => {
+                if (currentSlide < totalSlides) {
+                    changeSlide(1);
+                } else {
+                    stopAutoPlay();
+                }
+            }, 10000); // Change slide every 10 seconds
+        }
+        
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+        
+        // Initialize presentation
+        document.addEventListener('DOMContentLoaded', function() {
+            showSlide(1);
+            
+            // Preload next slide for smoother transitions
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'ArrowLeft' && currentSlide > 1) {
+                    event.preventDefault();
+                    changeSlide(-1);
+                } else if (event.key === 'ArrowRight' && currentSlide < totalSlides) {
+                    event.preventDefault();
+                    changeSlide(1);
+                } else if (event.key === ' ') {
+                    event.preventDefault();
+                    if (currentSlide < totalSlides) {
+                        changeSlide(1);
+                    }
+                }
+            });
+            
+            // Add click handlers for slides to advance
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('placeholder-content') || 
+                        e.target.closest('.nav-btn') || 
+                        e.target.closest('.step-card') ||
+                        e.target.closest('.team-card')) {
+                        return; // Don't advance if clicking on interactive content
+                    }
+                    if (currentSlide < totalSlides) {
+                        changeSlide(1);
+                    }
+                });
+            });
+
+            // Add smooth scroll behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+        });
+
+        // Add smooth scrolling for better mobile experience
+        function smoothScrollToSlide(slideNumber) {
+            const slide = document.getElementById(`slide${slideNumber}`);
+            if (slide) {
+                slide.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Preload next slide images/content for smoother experience
+        function preloadSlide(slideNumber) {
+            if (slideNumber > 0 && slideNumber <= totalSlides) {
+                const slide = document.getElementById(`slide${slideNumber}`);
+                if (slide) {
+                    // Force browser to render slide elements
+                    slide.style.visibility = 'hidden';
+                    slide.classList.remove('hidden');
+                    setTimeout(() => {
+                        slide.classList.add('hidden');
+                        slide.style.visibility = 'visible';
+                    }, 10);
+                }
+            }
+        }
+    </script>
+
+    <!-- Additional styles for better mobile experience -->
+    <style>
+        @media (max-width: 480px) {
+            .presentation-container {
+                padding: 10px;
+            }
+            
+            .slide {
+                padding: 15px;
+                margin: 15px 0;
+            }
+            
+            .slide-title {
+                font-size: 1.5em;
+            }
+            
+            .slide-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .nav-buttons {
+                bottom: 10px;
+                gap: 10px;
+            }
+            
+            .nav-btn {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+            
+            .metric-card {
+                margin: 10px 0;
+            }
+            
+            .metric-value {
+                font-size: 2em;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            .nav-buttons,
+            .progress-bar,
+            .slide-counter {
+                display: none;
+            }
+            
+            .slide {
+                page-break-after: always;
+                margin: 0;
+                box-shadow: none;
+            }
+            
+            .slide.hidden {
+                display: block !important;
+            }
+            
+            body {
+                background: white;
+            }
+        }
+        
+        /* Accessibility improvements */
+        .nav-btn:focus,
+        .step-card:focus,
+        .team-card:focus {
+            outline: 3px solid #8e44ad;
+            outline-offset: 2px;
+        }
+        
+        /* Animation preferences */
+        @media (prefers-reduced-motion: reduce) {
+            .slide,
+            .step-card,
+            .team-card,
+            .nav-btn {
+                transition: none;
+                animation: none;
+            }
+        }
+    </style>
+</body>
+</html>
